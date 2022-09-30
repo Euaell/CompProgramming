@@ -11,9 +11,7 @@ public class Solution {
         char[] ans = new char[n];
 
         for (int i = 0; i < n; i++)
-        {
             ans[i] = chars[(s[i] - 'a' + preF[i]) % 26];
-        }
 
         return string.Join("", ans);
     }
