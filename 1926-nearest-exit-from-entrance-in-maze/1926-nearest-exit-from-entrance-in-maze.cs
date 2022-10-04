@@ -6,11 +6,10 @@ public class Solution {
         int n = maze.Length;
         int m = maze[0].Length;
         
-        var visited = new HashSet<(int, int)>();
         var que = new Queue<(int, int)>();
         
-        bool isValid((int, int) p) {
-            return p.Item1 < n && p.Item1 >= 0 && p.Item2 < m && p.Item2 >= 0 && maze[p.Item1][p.Item2] == '.' && !visited.Contains((p.Item1, p.Item2));
+        bool IsValid((int, int) p) {
+            return p.Item1 < n && p.Item1 >= 0 && p.Item2 < m && p.Item2 >= 0 && maze[p.Item1][p.Item2] == '.';
         }
 
         bool IsExit((int, int) p)
@@ -25,11 +24,11 @@ public class Solution {
             for (int size = que.Count; size > 0; size--)
             {
                 var (row, col) = que.Dequeue();
-                if (visited.Contains((row, col))) continue;
-                visited.Add((row, col));
+                if (!IsValid((row, col))) continue;
+                maze[row][col] = '+';
                 if (IsExit((row, col))) return ans;
                 foreach (var point in directions.Select(p => (p.Item1 + row, p.Item2 + col)))
-                    if (isValid(point)) que.Enqueue(point);
+                    if (IsValid(point)) que.Enqueue(point);
             }
             ans++;
         }
