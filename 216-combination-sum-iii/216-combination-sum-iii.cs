@@ -1,7 +1,5 @@
 public class Solution {
-    public IList<IList<int>> CombinationSum3(int k, int n) {
-        int[] cand = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-        
+    public IList<IList<int>> CombinationSum3(int k, int n) {        
         IList<IList<int>> ans = new List<IList<int>>();
         
         void rec(int amount, int ind, int count, List<int> l) {
