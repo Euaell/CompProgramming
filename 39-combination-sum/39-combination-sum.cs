@@ -1,6 +1,7 @@
 public class Solution {
     public IList<IList<int>> CombinationSum(int[] c, int target) {
         int n = c.Length;
+        Array.Sort(c);
         
         IList<IList<int>> ans = new List<IList<int>>();
         void rec(int amount, int index, List<int> l) {
