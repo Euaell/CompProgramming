@@ -6,12 +6,14 @@ public class Solution {
         void rec(int amount, int index, List<int> l) {
             if (amount > target) return;
             if (amount == target) {
-                ans.Add(l);
+                ans.Add(new List<int>(l));
                 return;
             }
             
             for (int i = index; i < n; i++) {
-                rec(amount + c[i], i, new List<int>(l) {c[i]});
+                l.Add(c[i]);
+                rec(amount + c[i], i, l);
+                l.RemoveAt(l.Count - 1);
             }
         }
         rec(0, 0, new List<int>());
