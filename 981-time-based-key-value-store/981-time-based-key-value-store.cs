@@ -1,47 +1,27 @@
 public class TimeMap {
-   Dictionary<string, List<(int, string)>> map;
-    
+    private Dictionary<string, List<(int, string)>> dict;
     public TimeMap() {
-        map = new Dictionary<string, List<(int, string)>>();
+        dict = new();
     }
     
     public void Set(string key, string value, int timestamp) {
-        if(map.TryGetValue(key, out var list)) {
-            list.Add((timestamp, value));
-        } else {
-            var newList = new List<(int, string)>();
-            newList.Add((timestamp, value));
-            map.Add(key,newList);
-        }
+        if (!dict.ContainsKey(key)) dict.Add(key, new());
+        dict[key].Add((timestamp, value));
     }
     
     public string Get(string key, int timestamp) {
-        if(map.TryGetValue(key, out var list)) {
-           return BinarySearch(0, list.Count - 1, list, timestamp);
-        } else {
-            return string.Empty;
+        if (!dict.ContainsKey(key)) return "";
+        int left = 0;
+        int right = dict[key].Count - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (dict[key][mid].Item1 > timestamp) 
+                right = mid - 1;
+            else left = mid + 1;
         }
-    }
-    
-    private string BinarySearch(int start, int end, List<(int, string)> list, int target) {
-        var lastMid = -1;
+        if (right < 0) return "";
         
-        while(start <= end) {
-            var mid = (end - start) / 2 + start;
-            lastMid = mid;
-            
-            if(list[mid].Item1 == target) {
-                return list[mid].Item2;
-            } else if(list[mid].Item1 > target) {
-                end = mid - 1;
-            } else {
-                start = mid + 1;
-            }
-        }
-        
-        if(list.Count != 0 && end >= 0 && end < list.Count) return list[end].Item2;
-        
-        return string.Empty;
+        return dict[key][right].Item2;
     }
 }
 
