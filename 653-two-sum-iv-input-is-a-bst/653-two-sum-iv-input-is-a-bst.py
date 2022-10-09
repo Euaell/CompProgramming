@@ -7,18 +7,18 @@
 class Solution:
     def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
         
-        dict = {}
+        vis = set() 
         
         def inOrd(node):
             if not node: 
                 return False
             
-            dict[node.val] = node
-            ans = False
+            ans = k - node.val in vis
+            vis.add(node.val)
             ans |= inOrd(node.left)
             ans |= inOrd(node.right)
             
-            return ans or (k - node.val in dict and dict[k - node.val] != node)
+            return ans
         
         return inOrd(root)
             
