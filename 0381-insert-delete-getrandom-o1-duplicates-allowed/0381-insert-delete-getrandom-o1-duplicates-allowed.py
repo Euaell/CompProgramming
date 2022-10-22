@@ -32,11 +32,11 @@ class RandomizedCollection:
         return True
 
     def getRandom(self) -> int:
-        rnd = randint(0, len(self.arr) - 1)
-        return self.arr[rnd]
-    
-        # same as the above 2 line code
-        # return choice(self.arr)
+        # same as the below code
+        # rnd = randint(0, len(self.arr) - 1)
+        # return self.arr[rnd]
+        
+        return choice(self.arr)
 
 
 # Your RandomizedCollection object will be instantiated and called as such:
