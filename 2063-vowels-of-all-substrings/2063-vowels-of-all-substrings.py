@@ -9,14 +9,15 @@ class Solution:
     def countVowels(self, word: str) -> int:
         n = len(word)
         
-        dict = {'a': 0, 'e': 0, 'i': 0, 'o': 0, 'u': 0}
+        vowel = set(['a', 'e', 'i', 'o', 'u'])
         
         ans = 0
         for i in range(n):
             c = word[i]
             
             # check if it's vowel
-            if c in dict:
+            if c in vowel:
+                
                 ans += (n - i) * (i + 1)
         
         return ans
