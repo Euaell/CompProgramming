@@ -17,6 +17,9 @@ class Solution:
             
             # check if it's vowel
             if c in vowel:
+                # basically add all the substrings this character forms in front of it (n - i),
+                # plus all the substrings it can form with all the characters before it (n - i) * i
+                # total = (n - i) + (n - i) * i
                 
                 ans += (n - i) * (i + 1)
         
