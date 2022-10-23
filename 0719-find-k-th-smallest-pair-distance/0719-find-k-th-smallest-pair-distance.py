@@ -1,36 +1,37 @@
 class Solution:
     def smallestDistancePair(self, nums: List[int], k: int) -> int:
         n = len(nums)
-        
         nums.sort()
         
-        maxDiff = nums[-1] - nums[0]
         minDiff = inf
-        for i in range(n - 1):
-            minDiff = min(minDiff, nums[i + 1] - nums[i])
+        maxDiff = nums[-1] - nums[0]
+        for i in range(1, n):
+            minDiff = min(minDiff, nums[i] - nums[i - 1])
         
-        # binary search
+        # binary search for the answer from minDiff to maxDiff
         left = minDiff
         right = maxDiff
-        ans = right
         while left <= right:
             mid = (right + left) // 2
             
-            # count the number of pair that have distance less or equal to mid
-            greater = 0
+            # count the pairs with distance less or equal to mid,
+            # using sliding window
+            count = 0
             l = 0
-            for r in range(n):
+            for i in range(n):
                 
-                while nums[r] - nums[l] > mid:
+                while nums[i] - nums[l] > mid:
                     l += 1
                 
-                # A single "l" can form l - r pairs, meaning with every element in the window except itself
-                greater += (r - l)
+                count += (i - l)
             
-            if greater >= k:
-                ans = mid
+            # if true try searching for a better answer, 
+            # the answer structure will look like "FFFFTTTT" so the right pointer will be
+            # the right most position of the last "F" by the time the loop breaks.
+            # And left will hold the left most position of the right most true which is the answer.
+            if count >= k:
                 right = mid - 1
-            else:
+            else: 
                 left = mid + 1
         
-        return ans
+        return left
