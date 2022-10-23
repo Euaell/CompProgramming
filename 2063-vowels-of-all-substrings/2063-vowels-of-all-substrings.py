@@ -1,11 +1,4 @@
-class Solution:
-    def check(self, dict):
-        for k, v in dict.items():
-            if v == 0:
-                return False
-        
-        return True
-    
+class Solution:    
     def countVowels(self, word: str) -> int:
         n = len(word)
         
