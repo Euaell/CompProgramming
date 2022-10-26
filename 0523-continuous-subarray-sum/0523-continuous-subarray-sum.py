@@ -10,7 +10,7 @@ class Solution:
             
             if (sum % k) in dict:
                 if i - dict[(sum % k)] > 1: 
-                    print(nums[dict[(sum % k)] + 1: i + 1])
+                    # print(nums[dict[(sum % k)] + 1: i + 1])
                     return True
             else:
                 dict[(sum % k)] = i
