@@ -1,37 +1,19 @@
 class Solution:
-    def checkIfPrerequisite(self, numCourses: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:
+    def checkIfPrerequisite(self, n: int, pre: List[List[int]], queries: List[List[int]]) -> List[bool]:
         
-        degree = [0] * numCourses
+        adjMatrix = [[False] * n for _ in range(n)]
         
-        graph = defaultdict(list)
+        for p, c in pre:
+            adjMatrix[p][c] = True
         
-        for p1, p2 in prerequisites:
-            degree[p2] += 1
-            graph[p1].append(p2)
+        for intermidate in range(n):
+            for p in range(n):
+                for c in range(n):
+                    adjMatrix[p][c] |= (adjMatrix[p][intermidate] and adjMatrix[intermidate][c])
         
-        arr = [set() for _ in range(numCourses)]
+        answer = []
+        for p, c in queries:
+            answer.append(adjMatrix[p][c])
         
-        que = deque()
-        
-        for i, d in enumerate(degree):
-            if d == 0:
-                que.append(i)
-        
-        while que:
-            tmp = que.popleft()
-            
-            for r in graph[tmp]:
-                arr[r].add(tmp)
-                arr[r] = arr[r].union(arr[tmp])
-                degree[r] -= 1
-                if degree[r] == 0:
-                    que.append(r)
-        
-        n = len(queries)
-        
-        ans = [False] * n
-        
-        for i in range(n):
-            ans[i] = queries[i][0] in arr[queries[i][1]]
-            
-        return ans
+        return answer
+    
