@@ -16,15 +16,17 @@ class Solution:
             # add to the prefix sum
             sum += nums[i]
             
+            mod = (sum % k)
             # check if the modulo is not in the dict, before adding it value to our answer
-            if (sum % k) not in dict:
-                dict[(sum % k)] = 0
+            if mod not in dict:
+                dict[mod] = 0
+                
             # add the number of previous modulos to our answer, 
             # because thats how many subarrays we can form
             # starting from this element and going back
-            ans += dict[(sum % k)]
+            ans += dict[mod]
             
             # add the current val to our dict
-            dict[(sum % k)] += 1
+            dict[mod] += 1
         
         return ans
