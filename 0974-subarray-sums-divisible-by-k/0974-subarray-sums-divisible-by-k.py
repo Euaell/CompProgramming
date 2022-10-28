@@ -10,13 +10,12 @@ class Solution:
         ans = 0
         
         # holds the prefix sum of the array
-        sum = 0
+        mod = 0
         
         for i in range(n):
-            # add to the prefix sum
-            sum += nums[i]
+            # add to the prefix sum's modulo
+            mod = (mod + nums[i]) % k
             
-            mod = (sum % k)
             # check if the modulo is not in the dict, before adding it value to our answer
             if mod not in dict:
                 dict[mod] = 0
