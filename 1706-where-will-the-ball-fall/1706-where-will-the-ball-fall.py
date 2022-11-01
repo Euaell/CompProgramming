@@ -5,17 +5,10 @@ class Solution:
     def findExit(self, grid: List[List[int]], row: int, col: int) -> int:
         if row == len(grid):
             return col
-
-        if grid[row][col] == -1:
-            # go left
-            if self.isValid(grid, row, col - 1, -1):
-                return self.findExit(grid, row + 1, col - 1)
-            return -1
-        else:
-            # go right
-            if self.isValid(grid, row, col + 1, 1):
-                return self.findExit(grid, row + 1, col + 1)
-            return -1    
+        
+        if self.isValid(grid, row, col + grid[row][col], grid[row][col]):
+            return self.findExit(grid, row + 1, col + grid[row][col])
+        return -1
     
     def findBall(self, grid: List[List[int]]) -> List[int]:
         n = len(grid)
