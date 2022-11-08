@@ -12,7 +12,9 @@ class Solution:
         #     # check if the kth bit is on starting from the right
         #     if (1 << k) & xor == 1:
         #         break
+        #     k += 1
         # 
+        # lsd = 1 << k
         # just perform a bitwise and with its negative
         d = xor & -xor
 
