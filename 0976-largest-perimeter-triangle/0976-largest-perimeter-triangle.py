@@ -3,9 +3,8 @@ class Solution:
         n = len(nums)
         nums.sort()
         
-        for c in range(n - 1, 1, -1):
-            if nums[c - 1] + nums[c - 2] <= nums[c]: continue
-            
-            return nums[c - 1] + nums[c - 2] + nums[c]
+        for i in range(n - 1, 1, -1):
+            if nums[i] < (nums[i - 1] + nums[i - 2]):
+                return nums[i] + nums[i - 1] + nums[i - 2]
+        
         return 0
-            
