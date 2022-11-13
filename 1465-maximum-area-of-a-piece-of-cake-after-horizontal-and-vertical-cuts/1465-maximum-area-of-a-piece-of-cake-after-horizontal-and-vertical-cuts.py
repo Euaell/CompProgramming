@@ -16,4 +16,4 @@ class Solution:
         for i in range(1, len(vCuts)):
             maxV = max(maxV, vCuts[i] - vCuts[i - 1])
         
-        return (maxV * maxH) % mod
+        return (maxV % mod * maxH % mod) % mod
