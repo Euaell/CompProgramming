@@ -1,11 +1,10 @@
 class Solution:
     def maximumTop(self, nums: List[int], k: int) -> int:
-        n = len(nums)
+        n = len(nums) 
         
-        if n == 1 and k % 2 == 1:
-            return -1  
-        
-        if k > n:              
+        if k > n:  
+            if n == 1 and k % 2 == 1:
+                return -1 
             return max(nums)
         
         nums.append(-1)    
