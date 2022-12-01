@@ -3,15 +3,11 @@ class Solution:
         n = len(s)
         vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
         
-        firstHalf = 0
-        secondHalf = 0
+        vowelCount = [0, 0]
+        half = n//2
         
-        for i in range(n//2):
+        for i in range(n):
             if s[i] in vowels:
-                firstHalf += 1
+                vowelCount[i//half] += 1
         
-        for i in range(n//2, n):
-            if s[i] in vowels:
-                secondHalf += 1
-        
-        return firstHalf == secondHalf
+        return vowelCount[0] == vowelCount[1]
