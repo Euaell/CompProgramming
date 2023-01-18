@@ -5,12 +5,13 @@ class Solution:
         b = y + x
         for i in range(len(a)):
             if a[i] != b[i]:
-                return ord(b[i]) - ord(a[i])
-        return 0
+                return ord(a[i]) - ord(b[i])
+        
+        return len(x) - len(y)
         
     def largestNumber(self, nums: List[int]) -> str:
         newArr = [str(d) for d in nums]
-        newArr_sorted = sorted(newArr, key=functools.cmp_to_key(self.comp))
+        newArr_sorted = sorted(newArr, key=functools.cmp_to_key(self.comp), reverse=True)
         
         ans = "".join(newArr_sorted)
         if ans[0] == '0':
