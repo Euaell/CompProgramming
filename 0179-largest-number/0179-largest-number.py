@@ -6,7 +6,7 @@ class Solution:
         for i in range(len(a)):
             if a[i] != b[i]:
                 return ord(b[i]) - ord(a[i])
-        return len(y) - len(x)
+        return 0
         
     def largestNumber(self, nums: List[int]) -> str:
         newArr = [str(d) for d in nums]
