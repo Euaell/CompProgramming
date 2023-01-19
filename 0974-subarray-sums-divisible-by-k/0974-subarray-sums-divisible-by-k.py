@@ -9,23 +9,16 @@ class Solution:
         
         ans = 0
         
-        # holds the prefix sum of the array
-        mod = 0
-        
+        Sum = 0
         for i in range(n):
-            # add to the prefix sum's modulo
-            mod = (mod + nums[i]) % k
+            Sum += nums[i]
+            Sum %= k
             
-            # check if the modulo is not in the dict, before adding it value to our answer
-            if mod not in dict:
-                dict[mod] = 0
-                
-            # add the number of previous modulos to our answer, 
-            # because thats how many subarrays we can form
-            # starting from this element and going back
-            ans += dict[mod]
+            if Sum in dict:
+                ans += dict[Sum]
+                dict[Sum] += 1
+            else:
+                dict[Sum] = 1
             
-            # add the current val to our dict
-            dict[mod] += 1
-        
         return ans
+        
