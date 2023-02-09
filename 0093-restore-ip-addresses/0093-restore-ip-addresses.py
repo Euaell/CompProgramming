@@ -3,12 +3,14 @@ class Solution:
         return length == 1 or (s[start] != '0' and (length < 3 or s[start : start + length] <= "255"))
     
     def backTrack(self, s, startIndex, dots, ans):
-        remLen = len(s) - startIndex
-        remNo = 4 - len(dots)
-        if remLen > remNo * 3 or remLen < remNo:
+        rLen = len(s) - startIndex
+        rNo = 4 - len(dots)
+        
+        if rLen > rNo * 3 or rLen < rNo:
             return
+        
         if len(dots) == 3:
-            if self.valid(s, startIndex, remLen):
+            if self.valid(s, startIndex, rLen):
                 sb = []
                 last = 0
                 for dot in dots:
@@ -18,6 +20,7 @@ class Solution:
                 sb.append(s[startIndex:])
                 ans.append("".join(sb))
             return
+        
         for curPos in range(1, 3 + 1):
             
             dots.append(curPos)
