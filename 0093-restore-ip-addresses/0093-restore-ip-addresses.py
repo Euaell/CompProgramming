@@ -19,12 +19,12 @@ class Solution:
                 ans.append("".join(sb))
             return
         for curPos in range(1, 3 + 1):
-            # Append a dot at the current position.
+            
             dots.append(curPos)
-            # Try making all combinations with the remaining string.
+            
             if self.valid(s, startIndex, curPos):
                 self.backTrack(s, startIndex + curPos, dots, ans)
-            # Backtrack, i.e. remove the dot to try placing it at the next position.
+                
             dots.pop()
     
     def restoreIpAddresses(self, s: str) -> List[str]:
