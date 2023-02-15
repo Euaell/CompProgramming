@@ -26,6 +26,8 @@ class Solution:
                     out.pop()
                     visited[i] = 0
                     
-        helper(A,[], res)
-        #print(res)
+        helper(A, [], res)
+        
         return len(res)
+    
+    
