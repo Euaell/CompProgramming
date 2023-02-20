@@ -13,7 +13,7 @@ class Solution:
             s_count[s[i]+str(s_index)] += 1
             
         
-        for word  in words:
+        for word in words:
             valid = True
             w_index = 0
             ltr_count = 0
