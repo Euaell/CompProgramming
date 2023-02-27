@@ -11,12 +11,10 @@ class Solution:
             pref[birth] += 1
             pref[det] -= 1
         
+        ans = 0
         for i in range(1, 101):
             pref[i] += pref[i - 1]
-        
-        ans = 0
-        for i in range(101):
             if pref[i] > pref[ans]:
                 ans = i
-        # print(pref)
+        
         return ans + 1950
