@@ -1,18 +1,13 @@
-class Solution:
-    def calc(self, l, r, height):
-        ans = min(height[l], height[r]) * (r - l)
-        # print(ans)
-        return ans
-    
+class Solution:    
     def maxArea(self, height: List[int]) -> int:
         n = len(height)
         
         left = 0
         right = n - 1
         
-        ans = self.calc(left, right, height)
+        ans = min(height[left], height[right]) * (right - left)
         while left < right:
-            ans = max(ans, self.calc(left, right, height))
+            ans = max(ans, min(height[left], height[right]) * (right - left))
             if height[left] > height[right]:
                 right -= 1
             else: 
@@ -20,4 +15,3 @@ class Solution:
             
         
         return ans
-        # return min(height[left], height[right]) * (right - left)
