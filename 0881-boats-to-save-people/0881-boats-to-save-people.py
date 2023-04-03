@@ -8,11 +8,9 @@ class Solution:
         left = 0
         right = n - 1
         while left <= right:
-            if people[left] + people[right] > limit:
-                right -= 1
-            else:
+            if people[left] + people[right] <= limit:
                 left += 1
-                right -= 1
+                
             ans += 1
-            
+            right -= 1
         return ans
