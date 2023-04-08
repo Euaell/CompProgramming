@@ -9,21 +9,23 @@ class Node:
 
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        d={}
         
-        d[None] = None
+        visited = {}
         
-        tmp=head
-        while tmp:
-            x = Node(tmp.val)
-            d[tmp] = x
-            tmp = tmp.next
+        def dfs(t):
+            if not t:
+                return None
+            if t in visited:
+                return visited[t]
+            
+            visited[t] = Node(t.val)
+            
+            if t.next:
+                visited[t].next = dfs(t.next)
+            
+            if t.random:
+                visited[t].random = dfs(t.random)       
+            
+            return visited[t]
         
-        tmp = head
-        
-        while tmp:
-            d[tmp].random = d[tmp.random]
-            d[tmp].next = d[tmp.next]
-            tmp = tmp.next
-        
-        return d[head]
+        return dfs(head)
