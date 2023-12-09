@@ -7,6 +7,7 @@ class Solution:
             while i < len(s) and j < len(ans):
                 if s[i] != ans[j]:
                     del ans[j:]
+                    return
                 i += 1
                 j += 1
         
