@@ -15,6 +15,6 @@ class Solution:
             rec(node.right)
             
             node.left, node.right = node.right, node.left
+            return node
         
-        rec(root)
-        return root
+        return rec(root)
