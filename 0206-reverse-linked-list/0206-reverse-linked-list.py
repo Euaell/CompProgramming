@@ -8,7 +8,7 @@ class Solution:
         if not head:
             return None
         
-        def rec(node, parent):
+        def rec(node: Optional[ListNode], parent: Optional[ListNode]) -> Optional[ListNode]:
             if not node:
                 return None
         
