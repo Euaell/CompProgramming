@@ -8,14 +8,12 @@ class Solution:
         if not head:
             return None
         
-        def rec(node: Optional[ListNode], parent: Optional[ListNode]) -> Optional[ListNode]:
-            if not node:
-                return None
-        
-            newHead = rec(node.next, node)
+        prev = None
+        node = head
+        while node:
+            nextNode = node.next
+            node.next = prev
+            prev = node
+            node = nextNode
             
-            node.next = parent
-            
-            return newHead if newHead else node
-        
-        return rec(head, None)
+        return prev
